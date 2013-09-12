@@ -1,0 +1,9 @@
+from django.conf.urls import patterns, include, url
+
+from dbrosbs import views
+
+
+urlpatterns = patterns('',
+    #(r'^dbrosbs/helloworld/$', 'dbrosbs.views.hello_world'),
+	(r'^dbros/', 'dbrosbs.views.hello_world'),
+)

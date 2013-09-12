@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="{{ LANGUAGE_CODE }}" xml:lang="{{ LANGUAGE_CODE }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+<link rel="stylesheet" type="text/css" href="/media/css/global.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/login.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/base.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/changelists.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/dashboard.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/forms.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/null.css" />
+<link rel="stylesheet" type="text/css" href="/media/css/patch-iewin.css" />
+
+<link rel="stylesheet" type="text/css" href="/media/css/widgets.css" />
+
+
+
+
+{% if LANGUAGE_BIDI %}<link rel="stylesheet" type="text/css" href="/media/css/base.css" />{% endif %}
+{% block extrastyle %}{% endblock %}
+{% block extrahead %}{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+</head>
+{% load i18n %}
+
+<body class="{% if is_popup %}popup {% endif %}{% block bodyclass %}{% endblock %}">
+
+<!-- Container -->
+<div id="container">
+
+    {% if not is_popup %}
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+{% block branding %}
+
+{% endblock %}
+        </div>
+        
+
+
+
+
+    <!-- END Header -->
+    {% block breadcrumbs %}
+    <!--
+    <a href="/dbros/index/"> Home page</a> <br>{% if title %} &rsaquo; {{ title }}{% endif %}</div>
+    {% endblock %}
+    -->
+    {% endif %}
+
+        {% if messages %}
+        <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+        {% endif %}
+
+
+    <!-- Content -->
+    <div id="content">
+        {% block pretitle %}
+       
+        {% endblock %}
+       
+
+              {% block sidebar %}
+        <div id="content-related">
+
+        <h1><a href="/dbros/index/"> Home page</a> </h1>
+        
+        <h2>Area search</h2>
+        <ul>
+            <li><a href="/financial/search/">Cerca</a></li>
+            <li><a href="/financial/databrowse/">    Databrowse   </a></li>
+        </ul>
+        <h2>Admin</h2>
+        <ul>
+            <li><a href="/admin/">    Amministrazione   </a></li>
+        </ul>
+        {% endblock %}
+        </div>
+        
+        
+        {% block content %}
+        {% block object-tools %}{% endblock %}
+        {{ content }}
+        {% endblock %}
+        <br class="clear" />
+    </div>
+    <!-- END Content -->
+
+
+
+    {% block footer %}<div id="footer" align="center">
+       DbRosBS|  <a href="/dbros/index/"> Home page</a>  | By M.A. s. UPS Renato Daprà
+    </div>{% endblock %}
+</div>
+<!-- END Container -->
+
+</body>
+</html>
+

@@ -1,0 +1,56 @@
+from django.db import models
+
+# Create your models here.
+
+class Ambit(models.Model):
+	ambito_criminale = models.CharField(max_length=100)
+	note_ambito = models.TextField(blank=True)
+	def __unicode__(self):
+		return u"%s" % (self.ambito_criminale)
+
+class Area(models.Model):
+	area_criminale = models.CharField(max_length=100)
+	ambit = models.ForeignKey(Ambit, null=True, blank=True)
+	def __unicode__(self):
+		return u"%s" %(self.area_criminale)
+
+class Association(models.Model):
+	associazione_criminale = models.CharField(max_length=100)
+	note_associazione = models.TextField(blank=True)
+	area = models.ForeignKey(Area, null=True, blank=True)
+	def __unicode__(self):
+		return u"%s" % (self.associazione_criminale)
+
+class Name(models.Model):
+	cognome_nome = models.CharField(max_length=100)
+	luogo_nascita = models.CharField(max_length=100,blank=True)
+	data_nascita = models.DateField(null=True, blank= True)
+	cod_fiscale = models.CharField(max_length=16, blank=True)
+	residenza = models.CharField(max_length=100, blank=True)
+	via = models.CharField(max_length=100, blank=True)
+	domicilio = models.CharField(max_length=100, blank=True)
+	cittadinanza = models.CharField(max_length=50, blank=True)
+	professione = models.CharField(max_length=50, blank=True)
+	soprannome = models.CharField(max_length=100, blank=True)
+	alias = models.CharField(max_length=100, blank=True)
+	note_generali = models.TextField(blank=True)	
+	pub_date = models.DateTimeField('date published', null=True, blank=True)
+	association = models.ForeignKey(Association, null=True, blank=True)
+	def __unicode__(self):
+		return u"%s %s %s" % (self.cognome_nome , self.luogo_nascita , self.association)
+class Meta:
+	verbose_name_plural = "Nomi"
+
+class Fascicles(models.Model):
+	numero = models.IntegerField()
+	note = models.TextField(blank =True)
+	names = models.ManyToManyField(Name)
+	pub_date = models.DateTimeField('date published', null=True, blank=True)
+	def __unicode__(self):
+		return u"%s %s" %(self.numero, self.cognome_nome)
+
+
+	
+
+
+

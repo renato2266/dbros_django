@@ -1,0 +1,28 @@
+{% extends "base_site.html" %} 
+
+
+
+{% block title %} Lista nomi {% endblock %}
+
+{% block content %}
+  {% if lista_nomi %}    																																																																																																																																
+    <table>    																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																																				
+      {% for dati in lista_nomi %}        
+	    <tr>
+	    <td><a href="/soggetto/{{ dati.id }}/"> {{ dati.cognome_nome }}</a></td>
+	    <td><a href="/soggetto/{{ dati.id }}/"> {{ dati.data_nascita }}</a></td>
+	    <td><a href="/soggetto/{{ dati.id }}/"> {{ dati.association.associazione_criminale }}</a></td>
+	    <td><a href="/soggetto/{{ dati.id }}/"> {{ dati.ambit.ambito_criminale }}</a></td>
+	    </tr>
+	    {% endfor %}    
+ 	
+  	  <tr><td><a href="/dbros/form/">Aggiungi contatto</a></td></tr>    
+    </table>
+  {% else %}
+    <p>Nessun soggetto presente. <a href="/dbros/form/">Aggiungi un soggetto </a></p>
+  {% endif %}
+{% endblock %}
+
+
+
+

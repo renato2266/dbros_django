@@ -1,0 +1,24 @@
+#{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block title %}{{ title }} | {% trans 'Django site admin' %}{% endblock %}
+
+{% block branding %}
+<h1 id="site-name" >{% trans 'DbRosBS' %}</h1>
+{% endblock %}
+
+
+{% block nav-global %} 
+
+            <a href="/financial/index/">    Home page</a>
+           <!-- <a href="/financial/search/">    Cerca   </a>
+            <a href="/financial/databrowse/">    Databrowse   </a>
+            <a href="/financial/admin/">    Amministrazione   </a> 
+            <a href="/financial/transazioni/">    Lista transazioni   </a> 
+
+             <a href="/financial/filtro/"> Filtro</a><br> -->
+
+{% endblock %}
+ 
+
