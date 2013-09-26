@@ -4,25 +4,22 @@
 
 {% block content %}
 
-  {% if scheda_soggetto %}
-    <table>
-    	<tr>Dati:
-		<td>Nome:</td><td>{{ scheda_soggetto.cognome_nome }}</td>
-		<td<Luogo nascita:</td><td>{{ scheda_soggetto.luogo_nascita }}</td>
-		<td<Data nascita:</td><td>{{ scheda_soggetto.data_nascita }}</td>
-		<td<Ass crm.:</td><td>{{ scheda_soggetto.association.associazione_criminale }}</td>
+	{% if scheda_soggetto %}
+	<table>
+		<tr>Dati:
+			<td>Nome:</td><td>{{ scheda_soggetto.cognome_nome }}</td>
+			<td<Luogo nascita:</td><td>{{ scheda_soggetto.luogo_nascita }}</td>
+			<td<Data nascita:</td><td>{{ scheda_soggetto.data_nascita }}</td>
+			<td<Ass crm.:</td><td>{{ scheda_soggetto.association.associazione_criminale }}</td>
 	{% if collegamenti %}
 		<td<Area:</td><td>{{ collegamenti.area_criminale }}</td>
 		<td<Ambito:</td><td>{{ collegamenti.ambit.ambito_criminale }}</td>
+
+	{% else %}
+		<p>Nessun contatto presente in rubrica.</p>
 	{% endif %}
-	</tr>
-    {% for dati in lista_nomi %}
-      <tr><td>Telefono:</td><td>{{ dati.cognome_nome }}</td><td>Tipologia:</td><td>{{ dati.luogo_nascita }}</td></tr>
-    {% endfor %}    
-		</table>
-  {% else %}
-    <p>Nessun contatto presente in rubrica.</p>
-  {% endif %}
+	<table>
   
   <p>Torna alla <a href="/index/">lista dei contatti</a></p>
+{% endif %}
 {% endblock %}

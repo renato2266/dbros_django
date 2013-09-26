@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from models import *
 from django.shortcuts import render_to_response
 from django.shortcuts import get_object_or_404
+#from django.contrib.auth.decorators import login_required
 
 
 def hello_world(request):
@@ -13,19 +14,23 @@ def hello_world(request):
 #def index(request):
     #return render_to_response('index.html', )
 
+#@login_required
 def index(request):
     lista_nomi=Name.objects.all().order_by('cognome_nome').select_related('association')
     return render_to_response('index.html', {'lista_nomi':lista_nomi})
 
-
+#@login_required
 def scheda_soggetto(request, id):
-	try:
-		scheda_soggetto = Name.objects.select_related().get(pk=id)
-		#query={'id__in':scheda_soggetto.association.pk}
+	scheda_soggetto = Name.objects.select_related().get(pk=id)
+
+	#query={'id__in':scheda_soggetto.association.pk}
+	if scheda_soggetto.association_id != None:
 		collegamenti = Area.objects.select_related('ambit').get(pk=scheda_soggetto.association.area_id)
-		#return HttpResponse("'%s' nato a %s<br>" % (scheda_soggetto.cognome_nome,
-		#scheda_soggetto.luogo_nascita))
 		return render_to_response('scheda_soggetto.html', {'scheda_soggetto':scheda_soggetto, 'collegamenti':collegamenti})
-	except Name.DoesNotExist:
-		return HttpResponse("Codice %s inesistente" % id)
+	#return HttpResponse("'%s' nato a %s<br>" % (scheda_soggetto.cognome_nome,
+	#scheda_soggetto.luogo_nascita))
+	#if area_id != None:
+	else:
+		return render_to_response('scheda_soggetto.html', {'scheda_soggetto':scheda_soggetto})
+
 

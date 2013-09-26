@@ -34,8 +34,9 @@ class Name(models.Model):
 	soprannome = models.CharField(max_length=100, blank=True)
 	alias = models.CharField(max_length=100, blank=True)
 	note_generali = models.TextField(blank=True)	
-	pub_date = models.DateTimeField('date published', null=True, blank=True)
+	pub_date = models.DateTimeField('date published', auto_now_add=True)
 	association = models.ForeignKey(Association, null=True, blank=True)
+	photo=models.ImageField(upload_to='photo', blank = True, null=True)
 	def __unicode__(self):
 		return u"%s %s %s" % (self.cognome_nome , self.luogo_nascita , self.association)
 class Meta:
